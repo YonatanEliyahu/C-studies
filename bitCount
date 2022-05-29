@@ -1,0 +1,78 @@
+*/ the following program will get a string with a binary value (max lenght=32 chars) and count the number of 1's int the number
+   The number of times that the loop in the function will executes is exactly the number of set bits!
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define LONGSIZE 64
+int bitcount(unsigned long n);
+char*  myGets(char* buffer, int size);
+int decode(char* toDecode, unsigned long* res);
+
+int main()
+{
+	unsigned long fixedNum = 0;
+	while (1)
+	{
+	printf("Please enter binary number to check\n");//exemple 111000110011001001
+	char* toDecode=(char*)malloc(LONGSIZE);
+	myGets(toDecode, LONGSIZE);
+	if (decode(toDecode, &fixedNum) == 1)
+		break;
+	}
+	printf("%d\n",(int)bitcount(fixedNum));
+
+}
+
+
+int bitcount(unsigned long n)
+{
+	int count = 0;
+	int flipedbitesDec = 0;
+	while (1)
+	{
+		if (n == 1)
+		{
+			count++;
+			break;
+		}
+
+		flipedbitesDec = n ^ (n - 1);
+		if (flipedbitesDec == 0)
+			break;
+		//else
+		count++;
+		n /= (flipedbitesDec+1);
+	}
+	return count;
+}
+
+char*  myGets(char* buffer, int size)
+{
+	if (buffer != NULL && size > 0)
+	{
+		if (fgets(buffer, size, stdin))
+		{
+			buffer[strcspn(buffer, "\n")] = '\0';
+			return buffer;
+		}
+		buffer[0] = '\0';
+	}
+	return NULL;
+}
+
+int decode(char* toDecode, unsigned long* res)
+{	
+	int pow = 1;
+	for (int i = strlen(toDecode)-1; i >= 0; i--)
+	{
+		if ((toDecode[i] != '0') && (toDecode[i] != '1'))
+			return 0;
+		if(toDecode[i]=='1')
+			*res += (1 * pow);
+		pow *= 2;
+	}
+	return 1;
+}
