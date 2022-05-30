@@ -1,1 +1,39 @@
+bitCount_README :
 
+   The following program will get a string with a binary value (max lenght=32 chars) and count the number of 1's int the number
+   The number of times that the loop in the function will executes is exactly the number of set bits!
+
+    Main idea -
+
+    When you substract 1 from a binary number, all the bit from the right to the firts '1' in the number (including the itself) flips.
+    
+    For example:
+
+    1111000
+   -1
+   ----------
+    1110111
+    
+    We can see that the first three zeros and the first '1' fliped.
+    
+    As we know one shift right to binary number equal to devide in 2.
+    so if we want to move all the bits in the sequance just right after the first 1 we found, (skip all the zeros and the '1' we just found)
+    we need to divide in 2^i when i equals to the index of the first '1' we just found.
+    
+   now we will use XOR between n and n-1 and we will get that the fliped bits equals to a number that is 2^x-1 when x>=0.
+    
+    1111000
+  XOR
+    1110111
+   ---------
+    0001111 = 15 ===>> 15+1=16 = 2^4 when 4 is the index of the first '1'.
+    now we will add 1 to the XOR result and get the 2^i we looking for.
+    
+    
+    with this logic we make the function run exactly as the number of the '1' in the number!
+
+    try it yourself now!
+    
+    
+    
+    
