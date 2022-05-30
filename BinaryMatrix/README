@@ -1,0 +1,11 @@
+README -
+
+the following program reads a binary matrix from a file compress the matrix as much as possible and read it back.
+compressing the matrix size form (matrixSize+2)*32 bits to (matrixSize+64) bits only. // 2*32 for 2 integers that represent the rows and cols number.
+
+for example in the given files we compress the file size from 1208 bytes to only 46 bytes !!! we used only 0.04% from the first size and saved the same data!
+
+
+Articles about compressing:
+
+https://www.barracuda.com/glossary/data-compression
